@@ -18,8 +18,7 @@ export default function ExpenseCard({ item, ...props }: ExpenseCardProps) {
       dsp="flex"
       fw="wrap"
       fd="row"
-      gap="$8"
-      jc="space-between"
+      jc="space-evenly"
       zi="$0"
       pr="$9"
       {...props}
