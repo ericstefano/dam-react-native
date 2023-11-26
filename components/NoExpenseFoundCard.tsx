@@ -4,9 +4,9 @@ export default function NoExpenseFoundCard() {
   return (
     <Card
       bg="$gray2"
-      display="flex"
-      flexDirection="row"
-      justifyContent="space-evenly"
+      dsp="flex"
+      fd="row"
+      jc="space-evenly"
     >
       <Card.Header>
         <H6>Nenhum gasto encontrado</H6>
