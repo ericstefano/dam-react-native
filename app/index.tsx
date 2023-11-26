@@ -1,90 +1,48 @@
-import { Github, Twitter } from "@tamagui/lucide-icons";
-import { Link, useRouter } from "expo-router";
-import {
-  Button,
-  H1,
-  ListItem,
-  Paragraph,
-  Separator,
-  YGroup,
-  YStack
-} from "tamagui";
+import { Plus } from "@tamagui/lucide-icons";
+import { Button, H3, ScrollView, Stack, YStack } from "tamagui";
 
-import { MyStack } from "../components/MyStack";
+import CreateExpenseDialog from "../components/CreateExpenseDialog";
+import ExpenseCard from "../components/ExpenseCard";
+import NoExpenseFoundCard from "../components/NoExpenseFoundCard";
 
 export default function Home() {
-  const router = useRouter();
-
   return (
-    <MyStack>
-      <YStack
-        space="$4"
-        maxWidth={600}
-      >
-        <H1 textAlign="center">Welcome to Tamagui.</H1>
-        <Paragraph textAlign="center">
-          Here&apos;s a basic starter to show navigating from one screen to
-          another.
-        </Paragraph>
-      </YStack>
+    <Stack
+      p="$4"
+      flex={1}
+    >
+      <Stack>
+        <H3 mb="$3">Meus gastos</H3>
+        <ScrollView>
+          <YStack
+            space="$4"
+            mb="$4"
+          >
+            <ExpenseCard
+              itemName="Placa de Vídeo"
+              itemQuantity={2}
+              itemValue="5.122,52 R$"
+            />
+            <NoExpenseFoundCard />
+          </YStack>
+        </ScrollView>
+      </Stack>
 
-      <YStack space="$2.5">
-        <Button onPress={() => router.push("/users/testuser")}>
-          Go to user page
-        </Button>
-        <Button onPress={() => router.push("/tabs")}>Go to tabs page</Button>
-      </YStack>
-
-      <YStack space="$5">
-        <YGroup
-          bordered
-          separator={<Separator />}
-          theme="green"
-        >
-          <YGroup.Item>
-            <Link
-              asChild
-              href="https://twitter.com/natebirdman"
-              target="_blank"
-            >
-              <ListItem
-                hoverTheme
-                title="Nate"
-                pressTheme
-                icon={Twitter}
-              />
-            </Link>
-          </YGroup.Item>
-          <YGroup.Item>
-            <Link
-              asChild
-              href="https://github.com/tamagui/tamagui"
-              target="_blank"
-            >
-              <ListItem
-                hoverTheme
-                pressTheme
-                title="Tamagui"
-                icon={Github}
-              />
-            </Link>
-          </YGroup.Item>
-          <YGroup.Item>
-            <Link
-              asChild
-              href="https://github.com/ivopr/tamagui-expo"
-              target="_blank"
-            >
-              <ListItem
-                hoverTheme
-                pressTheme
-                title="This Template"
-                icon={Github}
-              />
-            </Link>
-          </YGroup.Item>
-        </YGroup>
-      </YStack>
-    </MyStack>
+      <CreateExpenseDialog
+        trigger={
+          <Button
+            pos="absolute"
+            bottom="$5"
+            right="$5"
+            size="$5"
+            circular
+            scaleIcon={1.5}
+            theme="active"
+            color="$blue10"
+            icon={Plus}
+          />
+        }
+      />
+    </Stack>
   );
 }
