@@ -27,8 +27,9 @@ export default function ControlledInput({
         render={({ field }) => (
           <Input
             id={id}
-            onChangeText={field.onChange}
             {...field}
+            onChangeText={field.onChange}
+            value={field.value ? String(field.value) : ""}
             {...props}
           />
         )}

@@ -8,7 +8,7 @@
       "resizeMode": "contain"
     },
     "icon": "./assets/icon.png",
-    "name": "yourappname",
-    "slug": "yourappname"
+    "name": "dam-react-native",
+    "slug": "dam-react-native"
   }
 }

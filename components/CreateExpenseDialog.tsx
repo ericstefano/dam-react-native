@@ -1,5 +1,7 @@
 import React, { ReactNode, useState } from "react";
 
+import { createItem } from "../api/items";
+
 import ModifyExpenseForm, { ModifyExpenseFormData } from "./ModifyExpenseForm";
 import TheDialog from "./TheDialog";
 
@@ -15,8 +17,7 @@ export default function CreateExpenseDialog({
   }
 
   function handleOnSubmit(data: ModifyExpenseFormData) {
-    // #TODO: Add Firebase create mutation
-    console.warn(data);
+    createItem(data);
     setOpen(false);
   }
 

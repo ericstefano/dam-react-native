@@ -1,11 +1,16 @@
+import { useEffect } from "react";
 import { Plus } from "@tamagui/lucide-icons";
 import { Button, H3, ScrollView, Stack, YStack } from "tamagui";
 
 import CreateExpenseDialog from "../components/CreateExpenseDialog";
 import ExpenseCard from "../components/ExpenseCard";
 import NoExpenseFoundCard from "../components/NoExpenseFoundCard";
+import { getItems } from "../hooks/getItems";
 
 export default function Home() {
+  const { items } = getItems();
+  const hasItems = items && items.length;
+
   return (
     <Stack
       p="$4"
@@ -18,12 +23,16 @@ export default function Home() {
             space="$4"
             mb="$4"
           >
-            <ExpenseCard
-              itemName="Placa de Vídeo"
-              itemQuantity={2}
-              itemValue="5.122,52 R$"
-            />
-            <NoExpenseFoundCard />
+            {hasItems ? (
+              items.map((item) => (
+                <ExpenseCard
+                  key={item.id}
+                  item={item}
+                />
+              ))
+            ) : (
+              <NoExpenseFoundCard />
+            )}
           </YStack>
         </ScrollView>
       </Stack>

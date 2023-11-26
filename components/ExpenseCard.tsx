@@ -1,21 +1,17 @@
 import { Pencil } from "@tamagui/lucide-icons";
 import { Button, Card, type CardProps, H6, Stack, Text } from "tamagui";
 
+import { formatPrice } from "../utils/number";
+
 import { DeleteExpenseAlertDialog } from "./DeleteExpenseAlertDialog";
 import EditExpenseDialog from "./EditExpenseDialog";
+import { ModifyExpenseFormData } from "./ModifyExpenseForm";
 
 type ExpenseCardProps = {
-  itemName: string;
-  itemQuantity: number;
-  itemValue: string;
+  item: ModifyExpenseFormData & { id: string };
 } & CardProps;
 
-export default function ExpenseCard({
-  itemName,
-  itemQuantity,
-  itemValue,
-  ...props
-}: ExpenseCardProps) {
+export default function ExpenseCard({ item, ...props }: ExpenseCardProps) {
   return (
     <Card
       bg="$gray2"
@@ -27,18 +23,18 @@ export default function ExpenseCard({
       {...props}
     >
       <Card.Header>
-        <H6 color="$purple11">Item</H6>
-        <Text fontSize="$1">{itemName}</Text>
+        <H6 color="$purple11">Nome</H6>
+        <Text fontSize="$1">{item.name}</Text>
       </Card.Header>
       <Card.Header>
         <H6 color="$yellow11">Quantidade</H6>
-        <Text fontSize="$1">{`${itemQuantity} ${
-          itemQuantity > 1 ? "unidades" : "unidade"
+        <Text fontSize="$1">{`${item.quantity} ${
+          item.quantity > 1 ? "unidades" : "unidade"
         }`}</Text>
       </Card.Header>
       <Card.Header>
         <H6 color="$green11">Valor</H6>
-        <Text fontSize="$1">{itemValue}</Text>
+        <Text fontSize="$1">{formatPrice(item.value)}</Text>
       </Card.Header>
       <Stack
         space="$2"
@@ -47,8 +43,9 @@ export default function ExpenseCard({
         top="$1"
         zi="$1"
       >
-        <DeleteExpenseAlertDialog />
+        <DeleteExpenseAlertDialog itemId={item.id} />
         <EditExpenseDialog
+          item={item}
           trigger={
             <Button
               circular

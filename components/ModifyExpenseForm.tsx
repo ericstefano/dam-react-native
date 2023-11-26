@@ -6,7 +6,7 @@ import { z } from "zod";
 import ControlledInput from "./ControlledInput";
 
 const modifyExpenseFormSchema = z.object({
-  item: z
+  name: z
     .string({ required_error: "O campo é obrigatório" })
     .trim()
     .min(1, "O campo deve conter pelo menos 1 caracter"),
@@ -28,26 +28,33 @@ export type ModifyExpenseFormData = z.infer<typeof modifyExpenseFormSchema>;
 
 type CreateExpenseFormProps = {
   onSubmit: (data: ModifyExpenseFormData) => void;
+  defaultValues?: ModifyExpenseFormData;
 };
 
 export default function ModifyExpenseForm({
-  onSubmit
+  onSubmit,
+  defaultValues
 }: CreateExpenseFormProps) {
   const {
     control,
     handleSubmit,
     formState: { errors }
   } = useForm<ModifyExpenseFormData>({
-    resolver: zodResolver(modifyExpenseFormSchema)
+    resolver: zodResolver(modifyExpenseFormSchema),
+    defaultValues: {
+      name: defaultValues?.name ?? "",
+      quantity: defaultValues?.quantity,
+      value: defaultValues?.value
+    }
   });
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <ControlledInput
-        label="Item"
-        name="item"
-        error={!!errors.item?.message}
-        helperText={errors.item?.message}
+        label="Nome"
+        name="name"
+        error={!!errors.name?.message}
+        helperText={errors.name?.message}
         control={control}
       />
       <ControlledInput

@@ -1,15 +1,21 @@
 import React, { ReactNode, useState } from "react";
 
+import { updateItem } from "../api/items";
+
 import ModifyExpenseForm, {
   type ModifyExpenseFormData
 } from "./ModifyExpenseForm";
 import TheDialog from "./TheDialog";
 
-type CreateExpenseDialogProps = { trigger: ReactNode };
+type EditExpenseDialogProps = {
+  trigger: ReactNode;
+  item: ModifyExpenseFormData & { id: string };
+};
 
 export default function EditExpenseDialog({
-  trigger
-}: CreateExpenseDialogProps) {
+  trigger,
+  item
+}: EditExpenseDialogProps) {
   const [open, setOpen] = useState(false);
 
   function handleOnOpenChange(open: boolean) {
@@ -17,8 +23,7 @@ export default function EditExpenseDialog({
   }
 
   function handleOnSubmit(data: ModifyExpenseFormData) {
-    // #TODO: Add Firebase edit mutation
-    console.warn(data);
+    updateItem(item.id, data);
     setOpen(false);
   }
 
@@ -30,7 +35,10 @@ export default function EditExpenseDialog({
       open={open}
       onOpenChange={handleOnOpenChange}
     >
-      <ModifyExpenseForm onSubmit={handleOnSubmit} />
+      <ModifyExpenseForm
+        onSubmit={handleOnSubmit}
+        defaultValues={item}
+      />
     </TheDialog>
   );
 }

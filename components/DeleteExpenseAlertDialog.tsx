@@ -1,8 +1,32 @@
+import { useState } from "react";
 import { Trash } from "@tamagui/lucide-icons";
 import { AlertDialog, Button, XStack, YStack } from "tamagui";
-export function DeleteExpenseAlertDialog() {
+
+import { deleteItem } from "../api/items";
+
+type DeleteExpenseAlertDialogProps = {
+  itemId: string;
+};
+
+export function DeleteExpenseAlertDialog({
+  itemId
+}: DeleteExpenseAlertDialogProps) {
+  const [open, setOpen] = useState(false);
+
+  function handleOnOpenChange(open: boolean) {
+    setOpen(open);
+  }
+
+  function handleDeleteExpense() {
+    deleteItem(itemId);
+    setOpen(false);
+  }
+
   return (
-    <AlertDialog>
+    <AlertDialog
+      open={open}
+      onOpenChange={handleOnOpenChange}
+    >
       <AlertDialog.Trigger asChild>
         <Button
           circular
@@ -60,6 +84,7 @@ export function DeleteExpenseAlertDialog() {
                 <Button
                   theme="active"
                   color="$red11"
+                  onPress={handleDeleteExpense}
                 >
                   Deletar
                 </Button>
