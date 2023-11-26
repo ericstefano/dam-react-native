@@ -38,6 +38,7 @@ export default function TheDialog({
           zIndex={200000}
           modal
           dismissOnSnapToBottom
+          snapPointsMode="fit"
         >
           <Sheet.Frame
             p="$5"
