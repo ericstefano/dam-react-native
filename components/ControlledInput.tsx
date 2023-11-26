@@ -25,10 +25,18 @@ export default function ControlledInput({
         control={control}
         name={name}
         render={({ field }) => (
-          <Input id={id} onChangeText={field.onChange} {...field} {...props} />
+          <Input
+            id={id}
+            onChangeText={field.onChange}
+            {...field}
+            {...props}
+          />
         )}
       />
-      <Text fontSize="$1" color={error ? "$red10" : "$gray10"}>
+      <Text
+        fontSize="$1"
+        color={error ? "$red10" : "$gray10"}
+      >
         {helperText}
       </Text>
     </Fieldset>

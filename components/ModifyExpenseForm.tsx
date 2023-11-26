@@ -1,4 +1,3 @@
-import { FormEventHandler } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Form, XStack } from "tamagui";
@@ -9,8 +8,8 @@ import ControlledInput from "./ControlledInput";
 const modifyExpenseFormSchema = z.object({
   item: z
     .string({ required_error: "O campo é obrigatório" })
-    .min(1, "O campo deve conter pelo menos 1 caracter")
-    .trim(),
+    .trim()
+    .min(1, "O campo deve conter pelo menos 1 caracter"),
   quantity: z.coerce
     .number({
       required_error: "O campo é obrigatório",
