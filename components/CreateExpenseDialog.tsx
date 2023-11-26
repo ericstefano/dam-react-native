@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 
-import ModifyExpenseForm from "./ModifyExpenseForm";
+import ModifyExpenseForm, { ModifyExpenseFormData } from "./ModifyExpenseForm";
 import TheDialog from "./TheDialog";
 
 type CreateExpenseDialogProps = { trigger: ReactNode };
@@ -14,6 +14,12 @@ export default function CreateExpenseDialog({
     setOpen(open);
   }
 
+  function handleOnSubmit(data: ModifyExpenseFormData) {
+    // #TODO: Add Firebase create mutation
+    console.warn(data);
+    setOpen(false);
+  }
+
   return (
     <TheDialog
       title="Cadastrar gasto"
@@ -22,7 +28,7 @@ export default function CreateExpenseDialog({
       open={open}
       onOpenChange={handleOnOpenChange}
     >
-      <ModifyExpenseForm onSubmit={() => console.log("oi")} />
+      <ModifyExpenseForm onSubmit={handleOnSubmit} />
     </TheDialog>
   );
 }
