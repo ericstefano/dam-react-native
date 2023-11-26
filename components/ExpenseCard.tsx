@@ -16,8 +16,10 @@ export default function ExpenseCard({ item, ...props }: ExpenseCardProps) {
     <Card
       bg="$gray2"
       dsp="flex"
+      fw="wrap"
       fd="row"
-      jc="space-evenly"
+      gap="$8"
+      jc="space-between"
       zi="$0"
       pr="$9"
       {...props}
