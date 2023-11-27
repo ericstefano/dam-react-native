@@ -18,6 +18,7 @@
     "@tamagui/font-inter": "^1.61.3",
     "@tamagui/lucide-icons": "^1.61.3",
     "@tamagui/themes": "^1.61.3",
+    "eas-cli": "^5.9.1",
     "expo": "49.0.9",
     "expo-constants": "~14.4.2",
     "expo-font": "11.4.0",

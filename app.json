@@ -9,6 +9,14 @@
     },
     "icon": "./assets/icon.png",
     "name": "dam-react-native",
-    "slug": "dam-react-native"
+    "slug": "dam-react-native",
+    "extra": {
+      "eas": {
+        "projectId": "06a6b54c-3ffa-4d9d-a4f7-096e8ef97eb6"
+      }
+    },
+    "android": {
+      "package": "com.erig.damreactnative"
+    }
   }
 }
