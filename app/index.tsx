@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Plus } from "@tamagui/lucide-icons";
 import { Button, H3, ScrollView, Stack, YStack } from "tamagui";
 
